@@ -751,7 +751,7 @@ class PlayState extends MusicBeatSubState
    */
   public var customStrumLines:Array<Strumline> = [];
 
-  public var modchartTweenList:FlxText;
+  public var modchartTweenList:FlxBitmapText;
 
   function updateTweenList():Void
   {
@@ -770,8 +770,11 @@ class PlayState extends MusicBeatSubState
   {
     if (modchartTweenList != null) return; // We already have it created!
 
-    modchartTweenList = new FlxText(0, 0, FlxG.width / 2, '', 20);
-    modchartTweenList.setFormat(Paths.font('vcr.ttf'), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+    modchartTweenList = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
+    modchartTweenList.alignment = CENTER;
+    modchartTweenList.borderStyle = OUTLINE;
+    modchartTweenList.borderColor = FlxColor.BLACK;
+    modchartTweenList.letterSpacing = -1;
     modchartTweenList.scrollFactor.set();
     modchartTweenList.zIndex = 927;
     add(modchartTweenList);
@@ -894,25 +897,31 @@ class PlayState extends MusicBeatSubState
         // Grab everything and throw it into the spritegroup!
         if (noteRenderMode)
         {
-          strumLine.strumlineNotes.forEach(function(note:ZSprite) {
+          strumLine.strumlineNotes.forEach(function(note:ZSprite)
+          {
             allStrumSprites.add(note);
           });
-          strumLine.notes.forEach(function(note:ZSprite) {
+          strumLine.notes.forEach(function(note:ZSprite)
+          {
             allStrumSprites.add(note);
           });
-          strumLine.holdNotes.forEach(function(note:ZSprite) {
-            allStrumSprites.add(note);
-          });
-
-          strumLine.arrowPaths.forEach(function(note:ZSprite) {
-            allStrumSprites.add(note);
-          });
-
-          strumLine.noteSplashes.forEach(function(note:ZSprite) {
+          strumLine.holdNotes.forEach(function(note:ZSprite)
+          {
             allStrumSprites.add(note);
           });
 
-          strumLine.noteHoldCovers.forEach(function(note:NoteHoldCover) {
+          strumLine.arrowPaths.forEach(function(note:ZSprite)
+          {
+            allStrumSprites.add(note);
+          });
+
+          strumLine.noteSplashes.forEach(function(note:ZSprite)
+          {
+            allStrumSprites.add(note);
+          });
+
+          strumLine.noteHoldCovers.forEach(function(note:NoteHoldCover)
+          {
             allStrumSprites.add(note.glow);
           });
         }

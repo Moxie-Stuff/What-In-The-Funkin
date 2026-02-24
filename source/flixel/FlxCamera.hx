@@ -2108,23 +2108,19 @@ class FlxCamera extends FlxBasic
    */
   @:deprecated("don't reference camera.camera")
   @:noCompletion
-  override function get_camera():FlxCamera
-    throw "don't reference camera.camera";
+  override function get_camera():FlxCamera throw "don't reference camera.camera";
 
   @:deprecated("don't reference camera.camera")
   @:noCompletion
-  override function set_camera(value:FlxCamera):FlxCamera
-    throw "don't reference camera.camera";
+  override function set_camera(value:FlxCamera):FlxCamera throw "don't reference camera.camera";
 
   @:deprecated("don't reference camera.cameras")
   @:noCompletion
-  override function get_cameras():Array<FlxCamera>
-    throw "don't reference camera.cameras";
+  override function get_cameras():Array<FlxCamera> throw "don't reference camera.cameras";
 
   @:deprecated("don't reference camera.cameras")
   @:noCompletion
-  override function set_cameras(value:Array<FlxCamera>):Array<FlxCamera>
-    throw "don't reference camera.cameras";
+  override function set_cameras(value:Array<FlxCamera>):Array<FlxCamera> throw "don't reference camera.cameras";
 }
 
 enum FlxCameraFollowStyle

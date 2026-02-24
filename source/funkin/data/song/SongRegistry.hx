@@ -12,6 +12,7 @@ import funkin.util.assets.DataAssets;
 import funkin.util.VersionUtil;
 import funkin.util.tools.ISingleton;
 import funkin.data.DefaultRegistryImpl;
+import funkin.play.modchartSystem.ModConstants;
 
 using funkin.data.song.migrator.SongDataMigrator;
 
@@ -40,7 +41,7 @@ using funkin.data.song.migrator.SongDataMigrator;
 
   static function get_DEFAULT_GENERATEDBY():String
   {
-    return '${Constants.TITLE} - ${Constants.VERSION}';
+    return '${Constants.TITLE} (${ModConstants.MODCHART_VERSION}) - ${Constants.VERSION}';
   }
 
   public function new()
