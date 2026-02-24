@@ -112,6 +112,7 @@ class NoteHoldCover extends FlxTypedSpriteGroup<ZSprite>
   {
     final direction:NoteDirection = holdNote.noteDirection;
     holdNoteDir = direction;
+    glow.setPosition(this.x, this.y);
     glow.animation.play('holdCoverStart${direction.colorName.toTitleCase()}');
     glow.shader = hsvShader;
   }

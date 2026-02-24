@@ -1,6 +1,7 @@
 package funkin.util;
 
 import funkin.play.notes.NoteSprite;
+import funkin.play.notes.Strumline;
 import funkin.Conductor;
 
 /**
@@ -33,6 +34,18 @@ typedef HitWindowRes =
  */
 class GRhythmUtil
 {
+  /**
+   * Mirror the note direction.
+   * @param noteData The original note direction.
+   * @return The mirrored note direction.
+   */
+  public static function mirrorNoteDirection(noteData:Int):Int
+  {
+    final MAX_KEY_VALUE:Int = (noteData < Strumline.KEY_COUNT ? Strumline.KEY_COUNT : Strumline.KEY_COUNT * 2);
+
+    return (MAX_KEY_VALUE - 1) - (noteData % Strumline.KEY_COUNT);
+  }
+
   /**
    * Get the current hit window for a note.
    * @param note The note to get the hit window for.

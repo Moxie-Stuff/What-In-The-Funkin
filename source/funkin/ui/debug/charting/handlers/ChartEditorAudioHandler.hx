@@ -203,8 +203,7 @@ class ChartEditorAudioHandler
 
         if (waveformData != null)
         {
-          var waveformSprite:WaveformSprite = initWaveformSprite(waveformData, state);
-          waveformSprite.x = 840;
+          var waveformSprite:WaveformSprite = initWaveformSprite(waveformData, state, charType);
           state.audioWaveforms.add(waveformSprite);
         }
         else
@@ -221,8 +220,7 @@ class ChartEditorAudioHandler
 
         if (waveformData != null)
         {
-          var waveformSprite:WaveformSprite = initWaveformSprite(waveformData, state);
-          waveformSprite.x = 360;
+          var waveformSprite:WaveformSprite = initWaveformSprite(waveformData, state, charType);
           state.audioWaveforms.add(waveformSprite);
         }
         else
@@ -245,7 +243,7 @@ class ChartEditorAudioHandler
   }
 
   // initializes a waveform sprite with buncho non-charType specific things
-  static function initWaveformSprite(waveformData:WaveformData, state:ChartEditorState):WaveformSprite
+  static function initWaveformSprite(waveformData:WaveformData, state:ChartEditorState, charType:CharacterType):WaveformSprite
   {
     var waveformSprite:WaveformSprite = new WaveformSprite(waveformData, VERTICAL, FlxColor.WHITE);
     waveformSprite.y = Math.max(state.gridTiledSprite?.y ?? 0.0, ChartEditorState.GRID_INITIAL_Y_POS - ChartEditorState.GRID_TOP_PAD);
@@ -253,6 +251,7 @@ class ChartEditorAudioHandler
     waveformSprite.width = (ChartEditorState.GRID_SIZE) * 2;
     waveformSprite.time = 0;
     waveformSprite.duration = Conductor.instance.getStepTimeInMs(16) * 0.001;
+    waveformSprite.iconId = charType;
     return waveformSprite;
   }
 
