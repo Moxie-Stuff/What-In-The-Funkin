@@ -807,8 +807,8 @@ class SustainTrail extends ZSprite
   private var holdRootZ:Float = 0.0;
   // private var holdRootAngle:Float = 0.0;
   // private var holdRootAlpha:Float = 0.0;
-  private var holdRootScaleX:Float = 0.0;
-  private var holdRootScaleY:Float = 0.0;
+  private var holdRootScaleX:Float = 1.0;
+  private var holdRootScaleY:Float = 1.0;
 
   private function clipTimeThing(songTimmy:Float, strumtimm:Float, piece:Int = 0):Float
   {

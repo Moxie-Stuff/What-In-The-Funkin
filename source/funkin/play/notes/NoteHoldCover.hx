@@ -24,6 +24,9 @@ class NoteHoldCover extends FlxTypedSpriteGroup<ZSprite>
 
   var noteStyle:NoteStyle;
 
+  // true if using spiral hold, false if not. Done this way so when the hold is finished, it keeps its angle.
+  public var isSpiralHold:Bool = false;
+
   // Custom position logic added by WITF that positions holdCovers at the ends of holds (where they get clipped) instead of at the strumNote.
   public var holdPositioned(default, set):Bool;
 

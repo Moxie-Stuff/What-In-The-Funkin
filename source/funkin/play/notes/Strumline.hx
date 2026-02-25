@@ -120,7 +120,8 @@ class Strumline extends FlxSpriteGroup
 
   public function requestMeshCullUpdateForPaths():Void
   {
-    arrowPaths.forEach(function(note:SustainTrail) {
+    arrowPaths.forEach(function(note:SustainTrail)
+    {
       note.cullMode = note.whichStrumNote?.strumExtraModData?.cullModeArrowpath ?? "none";
     });
   }
@@ -403,11 +404,6 @@ class Strumline extends FlxSpriteGroup
     var holdsBehindStrums:Bool = noteStyle.holdsBehindStrums();
     var holdCoversBehindStrums:Bool = noteStyle.holdCoversBehindStrums();
 
-    // if (noteStyle.id.toLowerCase() == "pixel")
-    // {
-    //  holdCoverRotate = false; // Because pixel hold covers are fucked
-    // }
-
     if (modchartSong)
     {
       arrowPathSetup();
@@ -572,7 +568,8 @@ class Strumline extends FlxSpriteGroup
         notitgPathSprite.loadGraphic(notitgPath.bitmap);
 
         // clear the old
-        arrowPaths.forEach(function(note:SustainTrail) {
+        arrowPaths.forEach(function(note:SustainTrail)
+        {
           arrowPaths.remove(note);
           note.destroy();
         });
@@ -678,7 +675,8 @@ class Strumline extends FlxSpriteGroup
 
       notitgPathSprite.y = 0;
 
-      arrowPaths.forEach(function(note:SustainTrail) {
+      arrowPaths.forEach(function(note:SustainTrail)
+      {
         note.visible = false;
       });
       return;
@@ -686,7 +684,8 @@ class Strumline extends FlxSpriteGroup
 
     var stitchEnds:Bool = true;
 
-    arrowPaths.forEach(function(note:SustainTrail) {
+    arrowPaths.forEach(function(note:SustainTrail)
+    {
       note.x = ModConstants.holdNoteJankX;
       note.y = ModConstants.holdNoteJankY;
 
@@ -870,7 +869,8 @@ class Strumline extends FlxSpriteGroup
    */
   public function getNotesMayHit():Array<NoteSprite>
   {
-    var notesInRange:Array<NoteSprite> = notes.members.filter(function(note:NoteSprite) {
+    var notesInRange:Array<NoteSprite> = notes.members.filter(function(note:NoteSprite)
+    {
       return note != null && note.alive && !note.hasBeenHit && note.mayHit;
     });
 
@@ -1733,8 +1733,11 @@ class Strumline extends FlxSpriteGroup
     var noteStyleScale:Float = noteStyle.getHoldCoverScale();
     var whichStrumNote:StrumlineNote = getByIndex(cover.holdNoteDir % KEY_COUNT);
 
-    @:privateAccess var spiralHolds:Bool = cover.holdNote?.noteModData?.usingSpiralHolds() ?? false;
-    // var spiralHolds:Bool = whichStrumNote.strumExtraModData?.usingSpiralHolds(false) ?? false;
+    if (cover.holdNote?.alive ?? null != null)
+    {
+      @:privateAccess cover.isSpiralHold = cover.holdNote?.noteModData?.usingSpiralHolds() ?? false;
+    }
+    var spiralHolds:Bool = cover.isSpiralHold;
 
     if (cover.holdPositioned)
     {
@@ -1742,14 +1745,17 @@ class Strumline extends FlxSpriteGroup
       {
         var daHold:SustainTrail = cover.holdNote;
 
-        var v:Array<Float> = daHold.vertices_array;
-
         // v[0] = first x pos
         // v[2] = second x pos
         // +1 for y
-
+        var v = daHold.vertices;
         var holdX:Float = v[0] + ((v[2] - v[0]) / 2);
         var holdY:Float = v[0 + 1] + ((v[2 + 1] - v[0 + 1]) / 2);
+        if (mods == null)
+        {
+          holdX += daHold.x;
+          holdY += daHold.y;
+        }
 
         @:privateAccess var holdZ:Float = daHold.holdRootZ;
         @:privateAccess var holdScaleX:Float = daHold.holdRootScaleX;
@@ -1854,7 +1860,13 @@ class Strumline extends FlxSpriteGroup
 
     if (spiralHolds && holdCoverRotate)
     {
-      if (cover.holdNote != null) cover.glow.angle = cover.holdNote.baseAngle;
+      if (cover.holdNote != null)
+      {
+        if (cover.holdNote != null && cover.holdNote.alive)
+        {
+          cover.glow.angle = cover.holdNote.baseAngle;
+        }
+      }
     }
     else // Fix for if spiral holds get disabled, the covers stay rotated.
     {
@@ -1939,7 +1951,8 @@ class Strumline extends FlxSpriteGroup
 
       cover.holdPositioned = !noteStyle.holdCoverVanillaPositionLogic();
 
-      if (mods != null)
+      // todo: fix holdPositioned covers for non WITF songs.
+      if (mods != null || cover.holdPositioned)
       {
         noteCoverSetPos(cover);
       }
