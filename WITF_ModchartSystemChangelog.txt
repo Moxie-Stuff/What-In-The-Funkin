@@ -1,14 +1,16 @@
 v1.0.3:
 
-Updated to latest version of FNF (v0.8.1)
+Updated to latest version of FNF (v0.8.3)
 Updated Anby's notestyle (SimpleSimple notestyle)
 Deprecated setFilters properly
 Fixed Meta Mods soft locking in story-mode menu
+Fixed hold covers that were hold-positioned not working outside of modchart songs
+Example songs separated to it's own repository on GitHub: https://github.com/Hazardous2468/WITF.Mods
 
 
 
 
-v1.0.2:
+v1.0.1-patch:
 
 Swapped FlxText in favour of FlxBitmapText for debug text. Game will no longer crash and burn having to constantly regen the text sprites every frame.
 

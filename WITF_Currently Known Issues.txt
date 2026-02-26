@@ -1,6 +1,6 @@
-Fork specific issues (V1.0.3):
+Note: this file is old and some may be outdated.
 
-- Hold covers for groovin (and maybe simple) notestyle are incorrectly positioned outside of WITF
+Fork specific issues (V1.0.3):
 
 - Hitting a hold early will sometimes make them bug out visually
 
@@ -20,15 +20,9 @@ Fork specific issues (V1.0.3):
 - The 'random' chart shuffle may take ages to load. Will be overhauled in a later fix
 - Chaos mode is still a WIP so there are some issues with it that will be eventually fixed
 
-- Incorrect playfield skewing with 3D mode enabled
-
-- Freeplay DJ for Modchart Hell sometimes disappears
-
 - Passing nothing into a built-in lua function (like "centerPlayer()") will trigger an instant game crash.
 
 - Offsets (input / visual) aren't properly tested
-
-- flxStrip ignores camera alpha (this affects sustains and 3D notes [might be fixed in v1.0])
 
 - If zsort is enabled earlier then beat -5, then the strums appear invisible.
 
@@ -51,21 +45,3 @@ Update: v1.0 may have brought back this issue, how fun!
 - Custom path mod jank (just try to stick to values between '0 - 1')
 
 - Note Splashes will have a visual flicker / stutter when being hitting on the first frame sometimes.
-
-
-
-V-Slice v0.6.4 issues:
-
-- non 4/4 time signatures don't work
-
-- Memory leaks and bad performance x.x (especially with FlxText!!!)
-
-- Visual bugs
-
-- Cannot save / load anything without risking a game freeze (such as in the chart editor)
-
-- Resizing the game when a shader is active breaks the shader (v0.7.6a ports the Inhuman fix to this problem since this fork already overrides the flxCamera for drawTriangles culling)
-
-- Mouse bugs lol
-
-- Input / visual offsets bugs
